@@ -1,0 +1,24 @@
+# TedditCategories — manual facility tag overrides.
+#
+# Tags add a second filter layer in the build menu, under the top-level
+# facility type tab. Tags are unioned with auto-derived tags unless
+# `disableAutoTags: true` is set.
+#
+# Auto-derived tags:
+#   Mining facilities      -> one `resource:<resource_id>` tag per resource in ResourcesToMine
+#   Refiner facilities     -> one `resource:<resource_id>` tag per resource in refinerData.Output
+#   Power facilities       -> one `power:<source>` tag per energy source flag
+#                             (solar | wind | geothermal | thermoelectric | <consumed-resource-id> | other)
+#
+# Format:
+#   <facility_id>:
+#     tags: [tag1, tag2, ...]
+#     disableAutoTags: false   # optional; default false (union with auto-tags)
+#
+# Example:
+# build_advanced_mine:
+#   tags: [resource:id_resource_iron, role:strategic]
+#
+# build_solar_array:
+#   tags: [power:solar]
+#   disableAutoTags: true

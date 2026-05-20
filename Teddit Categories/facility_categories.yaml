@@ -1,0 +1,44 @@
+# TedditCategories — user-defined subcategories under a top-level facility-type tab.
+#
+# Each entry creates a category row in the build-menu drill-down for the named tab.
+# Auto-tags (resource:<id> for mining/refining, power:<source> for power, etc.) still
+# apply on top, so a facility can show up in multiple categories simultaneously.
+#
+# Any facility under a top-level tab that has zero tags AND there is at least one
+# other tag in play under that tab is automatically gathered into a synthetic "OTHER"
+# subcategory at the bottom of the drill-down. You don't need to define OTHER yourself.
+#
+# Schema:
+#
+#   <facilityType>:
+#     - name: <display name>
+#       iconRef: <optional facility ID whose sprite to reuse for the category row>
+#       facilities:
+#         - <facility_id>
+#         - <facility_id>
+#
+# facilityType matches FacilityBaseDescriptor.EFacilityType (case-insensitive):
+#   Module | Habitation | Power | Mining | Production | LaunchFacility |
+#   Terraformation | Other | FacilitySegment
+#
+# Example — split the "Other" tab into Communications + Defense, with everything
+# else falling into OTHER:
+#
+# Other:
+#   - name: Communications
+#     iconRef: build_radio_tower
+#     facilities:
+#       - build_radio_tower
+#       - build_satellite_dish
+#       - build_deep_space_array
+#
+#   - name: Defense
+#     facilities:
+#       - build_missile_silo
+#       - build_bunker
+#
+# Production:
+#   - name: Chemicals
+#     facilities:
+#       - build_chemical_plant
+#       - build_oil_refinery
